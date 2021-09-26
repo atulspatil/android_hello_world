@@ -34,7 +34,7 @@ platform :android do
       slack(
           message: "Some thing goes wrong",
           success: false,
-          slack_url: "https://hooks.slack.com/services/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",
+          slack_url: "https://hooks.slack.com/services/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",
           attachment_properties: {
               fields: [
                   {
