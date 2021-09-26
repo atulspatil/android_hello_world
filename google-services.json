@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "123424267160",
+    "project_id": "mindb-app-aad9f",
+    "storage_bucket": "mindb-app-aad9f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123424267160:android:415d098e8f90ba42d2a9ed",
+        "android_client_info": {
+          "package_name": "codepath.demos.helloworlddemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123424267160-qog0mtgaam7q0bhu0a65aot3cnstjq9n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLjEPWpfcWQnf5ThVs6EFBxwnz1O62RzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123424267160-qog0mtgaam7q0bhu0a65aot3cnstjq9n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
