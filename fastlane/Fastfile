@@ -1,17 +1,52 @@
-
-default_platform(:android)
-
 platform :android do
-  desc "Runs all the tests"
-  lane :test do
-    gradle(task: "test")
-  end
 
-  desc "Submit a new Beta Build to Crashlytics Beta"
-  lane :beta do
-    gradle(task: "clean assembleRelease")
-    crashlytics
+    desc "Build aplication"
+    lane :build do
+       begin 
+          gradle(task: "clean assembleDebug")
+       rescue => exception
+           on_error(exception)
+       end
+    end
 
-  end
+    desc "Perform Unit tests"
+    lane :tests do
+      gradle(task: "test")
+    end
+
+    desc "Perform Instrumented tests"
+    lane :ui_tests do
+      gradle(
+        task: 'clean'
+      )
+      gradle(
+        task: 'assemble',
+        build_type: 'Debug'
+      )
+      gradle(
+        task: 'assemble',
+        build_type: 'AndroidTest'
+      )
+      screengrab
+    end
+
+   def on_error(exception)
+      slack(
+          message: "Some thing goes wrong",
+          success: false,
+          slack_url: "https://hooks.slack.com/services/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",
+          attachment_properties: {
+              fields: [
+                  {
+                      title: "Error message",
+                      value: exception.to_s,
+                      short: false
+                  }
+              ]
+          }
+      )
+   end
 
 end
+
+
