@@ -3,7 +3,6 @@ default_platform(:android)
 platform :android do
   private_lane :setup_variables do
     PACKAGE_NAME = ENV["PACKAGE_NAME"]
-    BUILD_NUMBER_PATH = ENV["BUILD_NUMBER_PATH"]
   end
 
   before_all do
@@ -23,18 +22,6 @@ platform :android do
   desc "Download dependencies"
   private_lane :download_dependencies do
     gradle(task: "androidDependencies")
-  end
-
-  private_lane :fetch_build_number do
-    sh(
-      command: "cat #{BUILD_NUMBER_PATH}"
-    )
-
-  end
-
-  private_lane :update_build_number do
-    buildNumber = fetch_build_number.to_i + 1
-    value = sh(command: "echo #{buildNumber} > #{BUILD_NUMBER_PATH}")
   end
 
   lane :generate_changelog_text do
