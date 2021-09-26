@@ -6,7 +6,7 @@ pipeline {
     stage('Setup') {
       steps {
         echo "Setup"
-        sh "gem install bundler"
+        sh "sudo gem install bundler"
         sh "bundle config set --local path 'vendor/bundle'"
         sh "bundle check || bundle install --jobs=4 --retry=3"
       }
