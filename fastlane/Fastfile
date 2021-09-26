@@ -1,30 +1,17 @@
+
 default_platform(:android)
 
 platform :android do
-  private_lane :setup_variables do
-    PACKAGE_NAME = ENV["PACKAGE_NAME"]
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
   end
 
-  before_all do
-    setup_variables
+  desc "Submit a new Beta Build to Crashlytics Beta"
+  lane :beta do
+    gradle(task: "clean assembleRelease")
+    crashlytics
+
   end
 
-  lane :release do |options|
-    build_apk
-  end
-
-  lane :build do |options|
-    update_build_number
-    build_apk
-  end
-
-  # Private Lanes
-  desc "Download dependencies"
-  private_lane :download_dependencies do
-    gradle(task: "androidDependencies")
-  end
-
-  lane :generate_changelog_text do
-    "#{git_branch}\n#{changelog_from_git_commits( commits_count: "10")}"
-  end
 end
